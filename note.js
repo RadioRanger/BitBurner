@@ -87,32 +87,32 @@ for (var rotation = 0; rotation < 70; rotation++) {
 		//&& lvlt <= lvl
 		if (ports >= 0) {
 			if (ports >= 1) {
-				brutessh(target)
+				await brutessh(target)
 				ns.tprint("Brute force ", target)
-				await ns.sleep(1000)
+				//await ns.sleep(1000)
 				if (ports >= 2) {
 					if (ftp == true && myport >= 2) {
-						ftpcrack(target)
+						await ftpcrack(target)
 						ns.tprint("FTPcrack ", target)
-						await ns.sleep(1000)
+						//await ns.sleep(1000)
 					}
 					if (ports >= 3) {
 						if (smtp == true && myport >= 3) {
-							relaysmtp(target)
+							await relaysmtp(target)
 							ns.tprint("relaySMTP ", target)
-							await ns.sleep(1000)
+							//await ns.sleep(1000)
 						}
 						if (ports >= 4) {
 							if (http == true && myport >= 4) {
-								httpworm(target)
+								await httpworm(target)
 								ns.tprint("HTTPWorm ", target)
-								await ns.sleep(1000)
+								//await ns.sleep(1000)
 							}
 							if (ports == 5) {
 								if (sql == true && myport >= 5) {
-									sqlinject(target)
+									await sqlinject(target)
 									ns.tprint("SQLInject ", target)
-									await ns.sleep(1000)
+									//await ns.sleep(1000)
 								}
 							}
 						}
@@ -121,9 +121,9 @@ for (var rotation = 0; rotation < 70; rotation++) {
 			}
 
 			if (myport >= ports) {
-				ns.nuke(target)
+				await ns.nuke(target)
 				ns.tprint("Nuking ", target)
-				await ns.sleep(1000)
+				//await ns.sleep(1000)
 				ns.tprint("Root Access.")
 				//installBackdoor(target)
 				//ns.tprint("Backdoor installed on ", target)
@@ -161,7 +161,7 @@ for (var rotation = 0; rotation < 70; rotation++) {
 			//singularity,installBackdoor(target)
 			//ns.tprint("Backdoor installed on ", target)
 			ns.tprint(" ")
-			await ns.sleep(1000)
+			//await ns.sleep(1000)
 		}
 		if (q <= 0) {
 			ns.tprint("Ram is zero on ", target)
@@ -188,7 +188,7 @@ for (var iv = 0; iv < 24; iv++) {
 		var q = (Math.floor((m / s) / 24))
 		ns.exec("highjack.script", "home", Number(q), t)
 		ns.tprint("Running hack on ", t, " ", q, " times.")
-		await ns.sleep(1000)
+		//await ns.sleep(1000)
 	}
 	if (ns.hasRootAccess(t) == false) {
 		ns.tprint("Hack level too high on ", target)
