@@ -20,13 +20,16 @@ export async function main(ns) {
                        "server20", "server21", "server22", "server23", "server24"]
         var check1 = avaServer[Number(rotation)]
         if ( present = ns.serverExists(check1)) {
-            if (present == false) {
+            if (present = false) {
                 //Get funds = avalibleMoney()
                 var avalibleMoney = ns.getServerMoneyAvailable("home")
+                ns.tprint("Money : ", avalibleMoney)
                 //Get check1 cost
                 var cost = ns.getPurchasedServerCost(1048576)
+                ns.tprint(" Cost : ", cost)
                 //do math- buyIt = is avalibleMoney() > cost = T or F
                 var buyIt = (cost < avalibleMoney)
+                ns.tprint(" Buyit: ", buyIt)
                 if (buyIt == true) {
                     ns.getPurchase(check1, Number[1048576])
                     ns.scp("server00.script", check1)
