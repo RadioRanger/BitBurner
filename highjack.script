@@ -1,0 +1,14 @@
+var target = args[0];
+//tprint(target);
+var rate = 0.05;
+var security = getServerMinSecurityLevel(target) + rate;
+var moneyThresh = getServerMaxMoney(target) * 0.75;
+while (true) {
+    if (getServerSecurityLevel(target) > security) {
+        weaken(target);
+    } else if (getServerMoneyAvailable(target) < moneyThresh) {
+        grow(target);
+    } else {
+        hack(target);
+    }
+}
