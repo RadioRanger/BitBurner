@@ -23,28 +23,28 @@ export async function main(ns) {
             if (present = false) {
                 //Get funds = avalibleMoney()
                 var avalibleMoney = ns.getServerMoneyAvailable("home")
-                ns.tprint("Money : ", avalibleMoney)
+                await ns.tprint("Money : ", avalibleMoney)
                 //Get check1 cost
                 var cost = ns.getPurchasedServerCost(1048576)
-                ns.tprint(" Cost : ", cost)
+                await ns.tprint(" Cost : ", cost)
                 //do math- buyIt = is avalibleMoney() > cost = T or F
                 var buyIt = (cost < avalibleMoney)
-                ns.tprint(" Buyit: ", buyIt)
+                await ns.tprint(" Buyit: ", buyIt)
                 if (buyIt == true) {
                     ns.getPurchase(check1, Number[1048576])
                     ns.scp("server00.script", check1)
                     ns.scp("highjack.script", check1)
                     ns.exec("server00.script", check1)
-                    ns.tprint("Purchased ", check1, ", running scripts.")
+                    await ns.tprint("Purchased ", check1, ", running scripts.")
                 }
                 if (buyIt == false) {
-                    ns.tprint("Funds not avalible for ", check1)
+                    await ns.tprint("Funds not avalible for ", check1)
                     break
                 }
             }
         }
     }
-    ns.tprint("Complete.");
+    await ns.tprint("Complete.");
 }
 
 /*
