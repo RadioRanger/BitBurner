@@ -1,19 +1,51 @@
 /** @param {import(".").NS } ns */
 export async function main(ns) {
 
-//    for (var check0 = 0; check0 < 25; check0++) {
-//    //Check for ServerNames ("server00-24")
-//      var avaServer = ["server00", "server01", "server02", "server03", "server04",
-//                       "server05", "server06", "server07", "server08", "server09",
-//                       "server10", "server11", "server12", "server13", "server14",
-//                       "server15", "server16", "server17", "server18", "server19",
-//                       "server20", "server21", "server22", "server23", "server24"]
-//      var check1 = avaServer[Number(check0)]
-//    //Get funds = avalibleMoney()
-//    //Get check1 cost
-//    //do math- is avalibleMoney > cost = T or F
-//    //
-//    }
+    //Var's
+    var rotation = 0;
+    var avaServer = 0;
+    var check1 = 0;
+    var present = 0;
+    var avalibleMoney = 0;
+    var cost = 0;
+    var buyIt = 0;
+
+    //Start of Loop
+    for (var rotation = 0; rotation < 25; rotation++) {
+        //Check for ServerNames ("server00-24")
+        var avaServer = ["server00", "server01", "server02", "server03", "server04",
+                       "server05", "server06", "server07", "server08", "server09",
+                       "server10", "server11", "server12", "server13", "server14",
+                       "server15", "server16", "server17", "server18", "server19",
+                       "server20", "server21", "server22", "server23", "server24"]
+        var check1 = avaServer[Number(rotation)]
+        if ( present = ns.serverExists(check1)) {
+            if (present == false) {
+                //Get funds = avalibleMoney()
+                var avalibleMoney = getServerMoneyAvailable("home")
+                //Get check1 cost
+                var cost = getPurchasedServerCost(1048576)
+                //do math- buyIt = is avalibleMoney() > cost = T or F
+                var buyIt = (cost < avalibleMoney)
+                if (buyIt == true) {
+                    getPurchase(check1, Number[1048576])
+                    ns.scp("server00.script", check1)
+                    ns.scp("highjack.script", check1)
+                    ns.exec("server00.script", check1)
+                    tprint("Purchased ", check1, ", running scripts.")
+                }
+                if (buyIt == false) {
+                    tprint("Funds not avalible for ", check1)
+                    break
+                }
+            }
+        }
+    }
+    tprint("Complete.");
+}
+
+/*
+// server00.script file
 
     for (var i = 0; i < 70; i++) {
         //Need Server list (all servers).
@@ -68,4 +100,5 @@ export async function main(ns) {
 
  }
 
-//ns.getHostname()
+//ns.getHostname();
+*/
