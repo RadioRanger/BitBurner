@@ -22,26 +22,26 @@ export async function main(ns) {
         if ( present = ns.serverExists(check1)) {
             if (present == false) {
                 //Get funds = avalibleMoney()
-                var avalibleMoney = getServerMoneyAvailable("home")
+                var avalibleMoney = ns.getServerMoneyAvailable("home")
                 //Get check1 cost
-                var cost = getPurchasedServerCost(1048576)
+                var cost = ns.getPurchasedServerCost(1048576)
                 //do math- buyIt = is avalibleMoney() > cost = T or F
                 var buyIt = (cost < avalibleMoney)
                 if (buyIt == true) {
-                    getPurchase(check1, Number[1048576])
+                    ns.getPurchase(check1, Number[1048576])
                     ns.scp("server00.script", check1)
                     ns.scp("highjack.script", check1)
                     ns.exec("server00.script", check1)
-                    tprint("Purchased ", check1, ", running scripts.")
+                    ns.tprint("Purchased ", check1, ", running scripts.")
                 }
                 if (buyIt == false) {
-                    tprint("Funds not avalible for ", check1)
+                    ns.tprint("Funds not avalible for ", check1)
                     break
                 }
             }
         }
     }
-    tprint("Complete.");
+    ns.tprint("Complete.");
 }
 
 /*
