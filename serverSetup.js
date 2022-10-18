@@ -5,7 +5,7 @@ export async function main(ns) {
     var rotation = 0;
     var avaServer = 0;
     var check1 = 0;
-    var present = 0;
+    var present = null;
     var money = 0;
     var cost = 0;
     var buyIt = 0;
@@ -19,8 +19,10 @@ export async function main(ns) {
                        "server15", "server16", "server17", "server18", "server19",
                        "server20", "server21", "server22", "server23", "server24"]
         var check1 = avaServer[Number(rotation)]
-        if ( present = ns.serverExists(check1)) {
-            if (present = false) {
+        
+        if (!ns.serverExists(check1)) {
+            await ns.tprint(check1, " present is ", present)
+            if (!ns.serverExists(check1)) {
                 //Get funds = avalibleMoney()
                 var money = ns.getServerMoneyAvailable("home")
                 await ns.tprint("Money : ", money)
@@ -31,7 +33,7 @@ export async function main(ns) {
                 var buyIt = (money > cost)
                 await ns.tprint(" Buyit: ", buyIt)
                 if (buyIt == true) {
-                    ns.getPurchase(check1, Number[1048576])
+                    ns.purchaseServer(check1, 1048576)
                     ns.scp("server00.script", check1)
                     ns.scp("highjack.script", check1)
                     ns.exec("server00.script", check1)
@@ -41,6 +43,9 @@ export async function main(ns) {
                     await ns.tprint("Funds not avalible for ", check1)
                     break
                 }
+            }
+            if (present = true) {
+                ns.tprint("Present is ", present)
             }
         }
     }
