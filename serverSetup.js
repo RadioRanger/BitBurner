@@ -6,7 +6,7 @@ export async function main(ns) {
     var avaServer = 0;
     var check1 = 0;
     var present = 0;
-    var avalibleMoney = 0;
+    var money = 0;
     var cost = 0;
     var buyIt = 0;
 
@@ -22,13 +22,13 @@ export async function main(ns) {
         if ( present = ns.serverExists(check1)) {
             if (present = false) {
                 //Get funds = avalibleMoney()
-                var avalibleMoney = ns.getServerMoneyAvailable("home")
-                await ns.tprint("Money : ", avalibleMoney)
+                var money = ns.getServerMoneyAvailable("home")
+                await ns.tprint("Money : ", money)
                 //Get check1 cost
                 var cost = ns.getPurchasedServerCost(1048576)
                 await ns.tprint(" Cost : ", cost)
                 //do math- buyIt = is avalibleMoney() > cost = T or F
-                var buyIt = (cost < avalibleMoney)
+                var buyIt = (money > cost)
                 await ns.tprint(" Buyit: ", buyIt)
                 if (buyIt == true) {
                     ns.getPurchase(check1, Number[1048576])
